@@ -10,6 +10,14 @@ service:
   type: LoadBalancer
   port: 8080
 
+resources:
+  requests:
+    cpu: "500m"
+    memory: "512Mi"
+  limits:
+    cpu: "1"
+    memory: "1Gi"
+
 configMapName: demo-app-config
 
 # Spring Boot properties
