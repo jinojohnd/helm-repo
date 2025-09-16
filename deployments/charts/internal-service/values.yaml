@@ -24,7 +24,7 @@ spring:
 
 internalService:
   message: "Hello from Internal Service A1!"
-  dbSecretName: internal-service-secret
+  dbSecretName: internal-service-qa-secret
   dbUrl: "jdbc:h2:mem:testdb"
   encrypted:
     dbUsername: "AgBTgO7hU0YkBR7T+J57jjT5q0NPjMRN9i8XgGidWvhFwMNmn4eJqWIN3Sm8UK+op1YEkStjNl0qVdUu5KczGV0ylZ3sJbtwTGcsqtso43wGUu2HcXRiGI/a8NYYGKiHLN/k45o1Ci+pc5IF9KGNar2NsJQDjgrnmao9iB5n2qjzgRsUij3wocDAJCPD7sB++FtcKIYqEyie+vwkzSgIJI3GbsGnoe/PKFyMB1zA343jLwXIfq+4r3DlgT/xJIzRq/k9Ga5PWFHEuAjgT94buAu95+pBpLt8u7kjEFv7LfheMOuaXuLrJpSkrynTRaQa6eaCYqcKoF3Jyhb1pO+WsucvUe29TKAaX3RzwxPgAHfFkVeJhpPrVy/wAvo98evrCr8xC3S8eqjB+imuLlydaK3soWOXRisdpii08+cT/GHr6MvAsa0evrHmgre5JO4GbfK8wrHPegZWkLE6NdL3sER407xnVZAXeDW6PJza9eL69cqcesYCN5Dah5xFyRoDgoQVVvPwk/o2qTMixCKMustGQB0ORDHzymTViF7XS+NZ66e6gor7QwBMu7MyHOxaQFqf+XThhFe51J+gsEBYRmrKMyjMFZFBK3DQkyMOmT4IekaJaCWRMHRZh1w/7p9majai/MgtjuDE3kpyJA1U0rzdgCvLDJJQ7oTUjfj+DEwvxXRwwxz2MSSzoyeRweK+qYou/qyYsEtJfU7r"
