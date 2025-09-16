@@ -1,10 +1,10 @@
 # Number of replicas for the Deployment
-replicaCount: 3
+replicaCount: 1
 
 # Docker image configuration
 image:
-  repository: localhost:5000/internal-service
-  tag: 1.0.1
+  repository: 049229311885.dkr.ecr.eu-north-1.amazonaws.com/is
+  tag: 1.0.0
   pullPolicy: Always
 
 # Service configuration
@@ -13,7 +13,7 @@ service:
   port: 8080                    # Service port other services call
   containerPort: 8080           # Container port matching Spring Boot server.port
 
-namespace: qa-space
+namespace: app-space
 
 # ConfigMap name
 configMapName: internal-service-config
@@ -23,7 +23,7 @@ spring:
   applicationName: internal-service
 
 internalService:
-  message: "Hello from Internal Service!"
+  message: "Hello from Internal Service A1!"
   dbSecretName: internal-service-secret
   dbUrl: "jdbc:h2:mem:testdb"
   encrypted:
