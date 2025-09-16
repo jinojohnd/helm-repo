@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName | default (printf "%s-config" .Chart.Name) }}
+  labels:
+    app: {{ .Chart.Name }}
+data:
+  application.properties: |
+    server.port={{ .Values.service.containerPort | default 8080 }}
+    spring.application.name={{ .Values.spring.applicationName | default .Chart.Name }}

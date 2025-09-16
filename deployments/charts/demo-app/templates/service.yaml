@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-service
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  type: {{ .Values.service.type | default "ClusterIP" }}       # ClusterIP for external access
+  selector:
+    app: {{ .Chart.Name }}
+  ports:
+    - port: {{ .Values.service.port | default 8080 }}         # Service port other pods and external clients call
+      targetPort: {{ .Values.service.containerPort | default 8080 }}  # Container port in
