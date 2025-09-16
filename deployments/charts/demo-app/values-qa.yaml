@@ -7,7 +7,7 @@ image:
 
 service:
   containerPort: 8080
-  type: ClusterIP
+  type: LoadBalancer
   port: 8080
 
 configMapName: demo-app-qa-config
