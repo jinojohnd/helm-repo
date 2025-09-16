@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: 049229311885.dkr.ecr.eu-north-1.amazonaws.com/fb
