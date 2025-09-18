@@ -1,5 +1,4 @@
 deploymentMode: SingleBinary
-
 loki:
   auth_enabled: false
   #
@@ -10,13 +9,11 @@ loki:
       ruler: loki-s3-bucket-nice-2
     s3:
       region: eu-north-1
-
   #
   storage_config:
     aws:
       region: eu-north-1
       s3forcepathstyle: false
-
   #
   schemaConfig:
     configs:
@@ -27,47 +24,46 @@ loki:
         index:
           prefix: loki_index_
           period: 24h
-
   compactor:
     retention_enabled: true
     delete_request_store: s3
-
   ruler:
     replicas: 1
     enable_api: true
     storage:
       type: s3
-
       s3:
         region: eu-north-1
         bucketnames: loki-s3-bucket-nice-1
         s3forcepathstyle: false
-
     alertmanager_url: http://prom:9093
-
   limits_config:
     allow_structured_metadata: true
     retention_period: 672h
-
 singleBinary:
   replicas: 1
   resources:
     requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
       cpu: 500m
       memory: 1Gi
-    limits:
-      cpu: 1
-      memory: 2Gi
-
-#
+  # Use persistent storage with gp2
+  persistence:
+    enabled: true
+    storageClass: gp2
+    size: 10Gi
+  # Tolerate the CriticalAddonsOnly taint
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+      effect: "NoSchedule"
 serviceAccount:
-  # use the default service account
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::049229311885:role/LokiServiceAccountRole
-
 gateway:
   enabled: true
-
 # Disable other deployment modes
 backend:
   replicas: 0
@@ -75,7 +71,6 @@ read:
   replicas: 0
 write:
   replicas: 0
-
 distributor:
   replicas: 0
 ingester:
