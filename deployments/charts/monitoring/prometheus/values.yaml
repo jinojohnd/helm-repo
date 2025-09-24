@@ -55,6 +55,24 @@ alertmanager:
   ingress:
     enabled: false
 
-# Grafana inside kube-prometheus-stack (disabled since you use standalone Grafana)
+# Grafana inside kube-prometheus-stack
 grafana:
-  enabled: false
+  enabled: true
+  defaultDashboardsEnabled: true
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: efs-sc
+    accessModes: ["ReadWriteMany"]
+    size: 1Gi
+  service:
+    type: LoadBalancer
+  tolerations:
+    - key: "dedicated"
+      operator: "Equal"
+      value: "monitoring"
+      effect: "NoSchedule"
+  nodeSelector:
+    dedicated: monitoring
+  ingress:
+    enabled: false
