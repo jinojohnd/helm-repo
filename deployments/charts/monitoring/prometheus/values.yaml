@@ -1,0 +1,37 @@
+# Keep RBAC enabled
+global:
+  rbac:
+    create: true
+
+# Prometheus configuration
+prometheus:
+  prometheusSpec:
+    retention: 10d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: efs-sc
+          accessModes: ["ReadWriteMany"] # Changed to ReadWriteMany for EFS compatibility
+          resources:
+            requests:
+              storage: 1Gi
+  ingress:
+    enabled: false
+
+# Alertmanager configuration
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: efs-sc
+          accessModes: ["ReadWriteMany"] # Changed to ReadWriteMany for EFS compatibility
+          resources:
+            requests:
+              storage: 1Gi
+  ingress:
+    enabled: false
+
+# Grafana inside kube-prometheus-stack (disabled since you use standalone Grafana)
+grafana:
+  enabled: false

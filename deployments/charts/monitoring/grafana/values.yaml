@@ -6,15 +6,6 @@ persistence:
     - ReadWriteMany
   size: 1Gi
 
-ingress:
-  enabled: true
-  ingressClassName: nginx
-  hosts:
-    - host: monitor.mergeleaf.com
-      paths:
-        - path: /
-          pathType: Prefix
-
 tolerations:
   - key: "dedicated"
     operator: "Equal"
