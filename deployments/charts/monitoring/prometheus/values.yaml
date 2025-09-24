@@ -1,0 +1,78 @@
+# Keep RBAC enabled
+global:
+  rbac:
+    create: true
+
+prometheusOperator:
+  tolerations:
+    - key: "dedicated"
+      operator: "Equal"
+      value: "monitoring"
+      effect: "NoSchedule"
+  nodeSelector:
+    dedicated: monitoring
+
+# Prometheus configuration
+prometheus:
+  prometheusSpec:
+    retention: 10d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: efs-sc
+          accessModes: ["ReadWriteMany"] # Consistent with Grafana for EFS
+          resources:
+            requests:
+              storage: 1Gi
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "monitoring"
+        effect: "NoSchedule"
+    nodeSelector:
+      dedicated: monitoring
+  ingress:
+    enabled: false
+
+# Alertmanager configuration
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: efs-sc
+          accessModes: ["ReadWriteMany"] # Consistent with Grafana for EFS
+          resources:
+            requests:
+              storage: 1Gi
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "monitoring"
+        effect: "NoSchedule"
+    nodeSelector:
+      dedicated: monitoring
+  ingress:
+    enabled: false
+
+# Grafana inside kube-prometheus-stack
+grafana:
+  enabled: true
+  defaultDashboardsEnabled: true
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: efs-sc
+    accessModes: ["ReadWriteMany"]
+    size: 1Gi
+  service:
+    type: LoadBalancer
+  tolerations:
+    - key: "dedicated"
+      operator: "Equal"
+      value: "monitoring"
+      effect: "NoSchedule"
+  nodeSelector:
+    dedicated: monitoring
+  ingress:
+    enabled: false
