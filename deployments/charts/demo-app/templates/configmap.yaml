@@ -8,4 +8,3 @@ data:
   application.properties: |
     server.port={{ .Values.service.containerPort | default 8080 }}
     spring.application.name={{ .Values.spring.applicationName | default .Chart.Name }}
-    spring.profiles.active={{ .Values.spring.profile | default "prod" }}

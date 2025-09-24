@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Chart.Name }}-servicemonitor
+  labels:
+    app: {{ .Chart.Name }}
+    # Important: This label is typically required by kube-prometheus-stack
+    # Check your Prometheus operator configuration for the exact label selector
+    release: kube-prometheus  # Adjust this based on your Helm release name
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  endpoints:
+    - port: http  # This should match the port name in your Service
+      path: /actuator/prometheus  # Default Spring Boot Actuator metrics endpoint
+      interval: 10s
+      scrapeTimeout: 5s
+      honorLabels: false
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}  # Monitor services in the same namespace

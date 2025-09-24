@@ -9,5 +9,6 @@ spec:
   selector:
     app: {{ .Chart.Name }}
   ports:
-    - port: {{ .Values.service.port | default 8080 }}        # Service port (internal clients call this)
-      targetPort: {{ .Values.service.containerPort | default 8080 }}  # Container port (Spring Boot listens here)
+    - name: http  # Added port name - required for ServiceMonitor
+      port: {{ .Values.service.port | default 8080 }}
+      targetPort: {{ .Values.service.containerPort | default 8080 }}

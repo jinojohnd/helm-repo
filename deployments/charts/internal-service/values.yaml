@@ -1,10 +1,10 @@
 # Number of replicas for the Deployment
-replicaCount: 1
+replicaCount: 3
 
 # Docker image configuration
 image:
-  repository: 049229311885.dkr.ecr.eu-north-1.amazonaws.com/is
-  tag: 1.0.0
+  repository: localhost:5000/internal-service
+  tag: 1.0.1
   pullPolicy: Always
 
 # Service configuration
@@ -13,7 +13,7 @@ service:
   port: 8080                    # Service port other services call
   containerPort: 8080           # Container port matching Spring Boot server.port
 
-namespace: app-space
+namespace: sample-app-qa-space
 
 # ConfigMap name
 configMapName: internal-service-config
@@ -23,6 +23,10 @@ spring:
   applicationName: internal-service
 
 internalService:
-  message: "Hello from Internal Service A1!"
-  dbSecretName: internal-service-qa-secret
+  message: "Hello from Internal Service!"
+  dbSecretName: internal-service-secret
   dbUrl: "jdbc:h2:mem:testdb"
+  encrypted:
+    dbUsername: "AgBTgO7hU0YkBR7T+J57jjT5q0NPjMRN9i8XgGidWvhFwMNmn4eJqWIN3Sm8UK+op1YEkStjNl0qVdUu5KczGV0ylZ3sJbtwTGcsqtso43wGUu2HcXRiGI/a8NYYGKiHLN/k45o1Ci+pc5IF9KGNar2NsJQDjgrnmao9iB5n2qjzgRsUij3wocDAJCPD7sB++FtcKIYqEyie+vwkzSgIJI3GbsGnoe/PKFyMB1zA343jLwXIfq+4r3DlgT/xJIzRq/k9Ga5PWFHEuAjgT94buAu95+pBpLt8u7kjEFv7LfheMOuaXuLrJpSkrynTRaQa6eaCYqcKoF3Jyhb1pO+WsucvUe29TKAaX3RzwxPgAHfFkVeJhpPrVy/wAvo98evrCr8xC3S8eqjB+imuLlydaK3soWOXRisdpii08+cT/GHr6MvAsa0evrHmgre5JO4GbfK8wrHPegZWkLE6NdL3sER407xnVZAXeDW6PJza9eL69cqcesYCN5Dah5xFyRoDgoQVVvPwk/o2qTMixCKMustGQB0ORDHzymTViF7XS+NZ66e6gor7QwBMu7MyHOxaQFqf+XThhFe51J+gsEBYRmrKMyjMFZFBK3DQkyMOmT4IekaJaCWRMHRZh1w/7p9majai/MgtjuDE3kpyJA1U0rzdgCvLDJJQ7oTUjfj+DEwvxXRwwxz2MSSzoyeRweK+qYou/qyYsEtJfU7r"
+    dbPassword: "AgC4G7SF0bx6s+EbXWiiV0HGizuaEUAY4TSWMy2jD4Zzi5t94KeOgRNbr6frtj36k6rrn/MQ+OFepKAypVb189yLKLrSCf984r5spqixQdyKeg+zwdPZ76nlEH2sA/ohkx+Ff++21Jy8i5nz0Z/1WdgjgGZLT42CmyIprO6eX039C/lOsPhUY+k+E7+ErfNDzfFkh5ZD0YZF3IvJy7xcDybQa0j/0tHzJ7Q/Gu/pwz5JBidB8jgE3+bWgDDm6IDpTBG4QTvEqTdmqzbbX9f4fuTOto3EnmPLe3a2Zau0J9+2TKhA/i40OCt9zQ1AxE2D35AQYahTcF0T7o7XypuPHfnecFQ0MOlKNxGYbQ+bbVjJlyQgxj3rHHlULNiKHWqTz+djhnG6DlN/zYTki+tA7Xgtvk/e3euKSbp2zssgFzj3IeRX29OeM3TUGXxDjX/6iynl1s0/OHYNEhqOmk4H4YWyMt2IE+hezlEoWfBgCZmcPBqTHVs3K0XCDA49XhEbH0hMegbIZjhhBRht2r3BqTj8KQcZ8kx9Vo6aqd1D40S9BaG7Evswamy6+t4uAbs9im87NNQFR3lA+ffjIWqPEKmPsoNeLvYnPUeSBFqaDabPjFE2duxvU7P5pvQXZC0dfabEaQ/ifHKpAadAcqMEGYTST6kChPHYi3ArXuGvpmPxVKo6VrLEw9wYyCsOKzAeM0xT4l8pTqGQ/b6u2oxmKlj1"
+

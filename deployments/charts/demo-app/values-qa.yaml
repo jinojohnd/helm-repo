@@ -1,8 +1,8 @@
 replicaCount: 2
 
 image:
-  repository: 049229311885.dkr.ecr.eu-north-1.amazonaws.com/fb
-  tag: 1.0.0
+  repository: localhost:5000/demo-app
+  tag: 3.0.0
   pullPolicy: Always
 
 service:
@@ -15,4 +15,3 @@ configMapName: demo-app-qa-config
 # Spring Boot properties
 spring:
   applicationName: demo-app-qa
-  profile: qa

@@ -5,9 +5,10 @@ metadata:
   labels:
     app: {{ .Chart.Name }}
 spec:
-  type: {{ .Values.service.type | default "ClusterIP" }}       # ClusterIP for external access
+  type: {{ .Values.service.type | default "ClusterIP" }}
   selector:
     app: {{ .Chart.Name }}
   ports:
-    - port: {{ .Values.service.port | default 8080 }}         # Service port other pods and external clients call
-      targetPort: {{ .Values.service.containerPort | default 8080 }}  # Container port in
+    - name: http  # Added port name - required for ServiceMonitor
+      port: {{ .Values.service.port | default 8080 }}
+      targetPort: {{ .Values.service.containerPort | default 8080 }}
