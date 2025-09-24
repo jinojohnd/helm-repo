@@ -11,10 +11,17 @@ prometheus:
       volumeClaimTemplate:
         spec:
           storageClassName: efs-sc
-          accessModes: ["ReadWriteMany"] # Changed to ReadWriteMany for EFS compatibility
+          accessModes: ["ReadWriteMany"] # Consistent with Grafana for EFS
           resources:
             requests:
               storage: 1Gi
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "monitoring"
+        effect: "NoSchedule"
+    nodeSelector:
+      dedicated: monitoring
   ingress:
     enabled: false
 
@@ -25,10 +32,17 @@ alertmanager:
       volumeClaimTemplate:
         spec:
           storageClassName: efs-sc
-          accessModes: ["ReadWriteMany"] # Changed to ReadWriteMany for EFS compatibility
+          accessModes: ["ReadWriteMany"] # Consistent with Grafana for EFS
           resources:
             requests:
               storage: 1Gi
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "monitoring"
+        effect: "NoSchedule"
+    nodeSelector:
+      dedicated: monitoring
   ingress:
     enabled: false
 
