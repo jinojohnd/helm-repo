@@ -1,0 +1,8 @@
+storageClassName: efs-sc
+pvName: efs-pv
+size: 1Gi
+accessMode: ReadWriteMany
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: false
+fileSystemId: fs-0df8c63b91ea8867e   # <-- Replace with your EFS FileSystemId

@@ -1,0 +1,24 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: {{ .Values.storageClassName }}
+provisioner: efs.csi.aws.com
+reclaimPolicy: {{ .Values.reclaimPolicy }}
+volumeBindingMode: {{ .Values.volumeBindingMode }}
+allowVolumeExpansion: {{ .Values.allowVolumeExpansion }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.pvName }}
+spec:
+  capacity:
+    storage: {{ .Values.size }}
+  volumeMode: Filesystem
+  accessModes:
+    - {{ .Values.accessMode }}
+  persistentVolumeReclaimPolicy: {{ .Values.reclaimPolicy }}
+  storageClassName: {{ .Values.storageClassName }}
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: {{ .Values.fileSystemId }}
