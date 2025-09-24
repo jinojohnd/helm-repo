@@ -12,4 +12,14 @@ ingress:
   hosts:
     - host: monitor.mergeleaf.com
       paths:
-        - /
+        - path: /
+          pathType: Prefix
+
+tolerations:
+  - key: "dedicated"
+    operator: "Equal"
+    value: "monitoring"
+    effect: "NoSchedule"
+
+nodeSelector:
+  dedicated: monitoring
