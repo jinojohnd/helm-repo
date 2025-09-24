@@ -3,11 +3,13 @@ persistence:
   type: pvc
   storageClassName: efs-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   size: 1Gi
 
 ingress:
   enabled: true
   ingressClassName: nginx
   hosts:
-    - monitoring.mergeleaf.com
+    - host: monitor.mergeleaf.com
+      paths:
+        - /
