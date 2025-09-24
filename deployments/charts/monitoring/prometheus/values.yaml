@@ -3,6 +3,15 @@ global:
   rbac:
     create: true
 
+prometheusOperator:
+  tolerations:
+    - key: "dedicated"
+      operator: "Equal"
+      value: "monitoring"
+      effect: "NoSchedule"
+  nodeSelector:
+    dedicated: monitoring
+
 # Prometheus configuration
 prometheus:
   prometheusSpec:
