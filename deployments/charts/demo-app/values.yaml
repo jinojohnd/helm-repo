@@ -1,4 +1,4 @@
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: 262235594053.dkr.ecr.us-east-2.amazonaws.com/demo-app
