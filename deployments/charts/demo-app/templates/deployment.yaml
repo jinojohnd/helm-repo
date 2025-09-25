@@ -18,6 +18,10 @@ spec:
         prometheus.io/path: "/actuator/prometheus"
         prometheus.io/port: "{{ .Values.service.containerPort | default 8080 }}"
     spec:
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

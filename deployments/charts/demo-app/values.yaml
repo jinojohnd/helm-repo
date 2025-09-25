@@ -15,3 +15,9 @@ configMapName: demo-app-config
 # Spring Boot properties
 spring:
   applicationName: demo-app
+
+tolerations:
+  - key: "dedicated"
+    operator: "Equal"
+    value: "monitoring"
+    effect: "NoSchedule"
