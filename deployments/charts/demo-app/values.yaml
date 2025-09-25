@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: 262235594053.dkr.ecr.us-east-2.amazonaws.com/demo-app
-  tag: 1.1.0
+  tag: 1.2.0
   pullPolicy: Always
 
 service:
